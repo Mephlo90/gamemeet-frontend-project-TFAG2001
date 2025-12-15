@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profile</title>
+  <link rel="stylesheet" href="styles.css?v=4" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">GameMeet</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="create.html">Create Session</a></li>
+      <li><a href="profile.html" class="active">Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="hero small-hero">
+    <h1>Your Profile</h1>
+    <p>Customize your preferences and view your sessions.</p>
+  </header>
+
+  <!-- Profile Container -->
+  <section class="profile-container">
+    <div class="profile-section">
+
+      <!-- Avatar -->
+      <div class="avatar-section">
+        <img id="avatarPreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%239575cd' width='100' height='100'/%3E%3Ccircle cx='50' cy='38' r='18' fill='%23fff'/%3E%3Cellipse cx='50' cy='85' rx='28' ry='22' fill='%23fff'/%3E%3C/svg%3E" alt="Avatar" class="avatar" />
+        <input type="file" id="avatarUpload" accept="image/*" />
+      </div>
+
+      <!-- Basic Info -->
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="Your username..." />
+
+      <label for="location">Location</label>
+      <input type="text" id="userLocation" placeholder="City or region..." />
+
+      <label for="bio">Bio</label>
+      <textarea id="bio" rows="4" placeholder="Tell others about yourself..."></textarea>
+
+      <!-- Game Preferences -->
+      <h3>Game Preferences</h3>
+
+      <label for="favoriteGames">Favorite Games</label>
+      <input type="text" id="favoriteGames" placeholder="Search games to add..." />
+      <div id="favGameResults" class="dropdown-results hidden"></div>
+
+      <ul id="favoriteGamesList" class="tag-list"></ul>
+
+      <button id="saveProfileBtn" class="submit-btn">Save Profile</button>
+
+      <button id="aiRecommendationBtn" class="assistant-inline-btn">✨ Recommend Games</button>
+
+    </div>
+
+    <!-- User Sessions -->
+    <div class="sessions-section">
+      <h3>Your Joined Sessions</h3>
+      <div id="joinedSessions" class="session-list small-list"></div>
+    </div>
+  </section>
+
+  <!-- Floating AI Assistant -->
+  <button id="assistantBtn" class="assistant-btn">🤖</button>
+
+  <div id="assistantPopup" class="assistant-popup hidden">
+    <div class="assistant-header">
+      <h3>Game Assistant</h3>
+      <button id="closeAssistant">✖</button>
+    </div>
+    <div class="assistant-messages" id="assistantMessages"></div>
+    <div class="assistant-input">
+      <input type="text" id="assistantInput" placeholder="Ask for help..." />
+      <button id="assistantSend">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js?v=2"></script>
+  <script>
+    function loadJoinedSessions() {
+      const joined = JSON.parse(localStorage.getItem("joinedSessions")) || [];
+      const container = document.getElementById("joinedSessions");
+      container.innerHTML = "";
+      
+      if (joined.length === 0) {
+        container.innerHTML = "<p class='no-sessions'>No sessions joined yet. <a href='index.html'>Browse sessions!</a></p>";
+        return;
+      }
+      
+      joined.forEach(session => {
+        const card = document.createElement("div");
+        card.className = "session-card-small";
+        card.innerHTML = `
+          <img src="${session.cover}" alt="${session.game}" class="session-card-small-img" />
+          <h4>${session.title}</h4>
+          <p><strong>${session.game}</strong></p>
+          <p>📅 ${session.date} | 🕐 ${session.time}</p>
+          <p>📍 ${session.location}</p>
+          <button class="leave-btn" data-id="${session.id}">Leave</button>
+        `;
+        container.appendChild(card);
+        
+        card.querySelector(".leave-btn").addEventListener("click", () => {
+          let joined = JSON.parse(localStorage.getItem("joinedSessions")) || [];
+          joined = joined.filter(s => s.id !== session.id);
+          localStorage.setItem("joinedSessions", JSON.stringify(joined));
+          loadJoinedSessions();
+        });
+      });
+    }
+    
+    loadJoinedSessions();
+  </script>
+</body>
+</html>
