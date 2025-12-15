@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Game Session</title>
+  <link rel="stylesheet" href="styles.css?v=4" />
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="logo">GameMeet</div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="create.html" class="active">Create Session</a></li>
+      <li><a href="profile.html">Profile</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header class="hero small-hero">
+    <h1>Create a New Session</h1>
+    <p>Host a game night or start a new campaign.</p>
+  </header>
+
+  <!-- Form Section -->
+  <section class="form-container">
+    <form id="createSessionForm">
+      <label for="title">Session Title</label>
+      <input type="text" id="title" required placeholder="Ex: Friday Night D&D One-Shot" />
+
+      <label for="gameSearch">Game Name</label>
+      <img id="gamePreview" class="game-cover-small hidden" src="" alt="Game Preview" />
+      <input type="text" id="gameSearch" placeholder="Search for a game..." autocomplete="off" />
+      <div id="gameResults" class="dropdown-results hidden"></div>
+
+      <label for="gameType">Game Type</label>
+      <select id="gameType">
+        <option value="Board">Board Game</option>
+        <option value="Card">Card Game</option>
+        <option value="RPG">Role-Playing Game</option>
+      </select>
+
+      <label for="date">Date</label>
+      <input type="date" id="date" required />
+
+      <label for="time">Time</label>
+      <input type="time" id="time" required />
+
+      <label for="location">Location</label>
+      <input type="text" id="location" placeholder="City, Address, or 'Online'" />
+
+      <label for="players">Number of Players</label>
+      <input type="number" id="players" min="1" max="20" />
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="5" placeholder="Describe your session..."></textarea>
+
+      <button type="button" id="aiDescriptionBtn" class="assistant-inline-btn">✨ Generate Description</button>
+      <button type="submit" class="submit-btn">Create Session</button>
+    </form>
+  </section>
+
+  <!-- Floating AI Assistant -->
+  <button id="assistantBtn" class="assistant-btn">🤖</button>
+
+  <div id="assistantPopup" class="assistant-popup hidden">
+    <div class="assistant-header">
+      <h3>Game Assistant</h3>
+      <button id="closeAssistant">✖</button>
+    </div>
+    <div class="assistant-messages" id="assistantMessages"></div>
+    <div class="assistant-input">
+      <input type="text" id="assistantInput" placeholder="Ask for help..." />
+      <button id="assistantSend">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>
