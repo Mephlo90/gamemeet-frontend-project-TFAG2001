@@ -148,97 +148,6 @@ button.submit-btn:hover { background: #7e57c2; transform: translateY(-2px); }
   margin-right: 8px;
 }
 
-/* --- Floating AI Assistant --- */
-.assistant-btn {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background: #7e57c2;
-  color: #fff;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  font-size: 1.6rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
-  transition: transform 0.2s;
-}
-.assistant-btn:hover { transform: scale(1.1); }
-.assistant-popup {
-  position: fixed;
-  bottom: 95px;
-  right: 25px;
-  width: 340px;
-  max-height: 480px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 100;
-}
-.assistant-header {
-  background: #5e35b1;
-  color: #fff;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-radius: 10px 10px 0 0;
-}
-.assistant-header h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-.assistant-header button {
-  background: transparent;
-  color: #fff;
-  font-size: 1.2rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-.assistant-header button:hover {
-  background: rgba(255,255,255,0.2);
-}
-.assistant-messages { flex: 1; padding: 0.9rem; overflow-y: auto; }
-.msg-user, .msg-bot { padding: 0.5rem 0.8rem; border-radius: 8px; margin-bottom: 0.5rem; }
-.msg-user { background: #e0d4f7; text-align: right; }
-.msg-bot { background: #f7f7fb; text-align: left; }
-.assistant-input {
-  display: flex;
-  border-top: 1px solid #eaeaea;
-  border-radius: 0 0 10px 10px;
-  overflow: hidden;
-}
-.assistant-input input {
-  flex: 1;
-  padding: 0.75rem 1rem;
-  border: none;
-  font-family: inherit;
-  font-size: 0.95rem;
-  min-width: 0;
-}
-.assistant-input input:focus {
-  outline: none;
-}
-.assistant-input button {
-  background: #5e35b1;
-  color: #fff;
-  padding: 0.75rem 1.25rem;
-  border: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: background 0.2s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.assistant-input button:hover { background: #7e57c2; }
-
 /* --- Search Bar --- */
 .search-bar { display: flex; gap: 0.5rem; justify-content: center; max-width: 500px; margin: 0 auto; }
 .search-bar input {
@@ -389,20 +298,6 @@ button.submit-btn:hover { background: #7e57c2; transform: translateY(-2px); }
 
 /* --- Small Hero --- */
 .small-hero { padding: 2rem 1rem; margin-bottom: 2rem; }
-
-/* --- AI Inline Button --- */
-.assistant-inline-btn {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.6rem 1rem;
-  background: linear-gradient(135deg, #7e57c2, #9575cd);
-  color: #fff;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  transition: transform 0.2s, opacity 0.2s;
-}
-.assistant-inline-btn:hover { transform: scale(1.02); opacity: 0.9; }
-.assistant-inline-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 /* --- Profile Page --- */
 .profile-container {
