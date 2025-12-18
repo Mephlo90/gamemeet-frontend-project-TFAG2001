@@ -1,8 +1,4 @@
 
-// Open AI API
-
-window.OPENAI_API_KEY = "Add ypur OpenAI API KEY here";
-
 // Board Game Geek API Token - Paid API. Not running
 
 window.BGG_API_TOKEN = null;
@@ -167,15 +163,6 @@ if (!window.__GAMEMEET_INIT__) {
     const gamePreview = document.getElementById("gamePreview");
     let selectedGameCover = "";
     let selectedGameData = null;
-
-    // assistant selectors
-    const assistantBtn = document.getElementById("assistantBtn");
-    const assistantPopup = document.getElementById("assistantPopup");
-    const closeAssistant = document.getElementById("closeAssistant");
-    const assistantSend = document.getElementById("assistantSend");
-    const assistantInput = document.getElementById("assistantInput");
-    const assistantMessages = document.getElementById("assistantMessages");
-    const aiDescriptionBtn = document.getElementById("aiDescriptionBtn");
 
     // profile
     const joinedSessionsContainer = document.getElementById("joinedSessions");
@@ -482,101 +469,6 @@ if (!window.__GAMEMEET_INIT__) {
         }
       });
     }
-
-
-    // AI description (create page)
-
-    async function askAssistant(message) {
-      const key = getOpenAIKey();
-      if (!key) return "Please add your OpenAI API key to localStorage (openai_api_key) or expose window.OPENAI_API_KEY for the assistant to work.";
-
-      try {
-        const res = await fetch("https://api.openai.com/v1/chat/completions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${key}` },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              { role: "system", content: "You are a friendly assistant helping users with board games..." },
-              { role: "user", content: message }
-            ],
-            temperature: 0.7,
-            max_tokens: 300
-          })
-        });
-        const data = await res.json();
-        if (data.error) return "Error: " + data.error.message;
-        return data.choices?.[0]?.message?.content?.trim() || "Sorry, couldn't generate a response.";
-      } catch (err) {
-        console.error("Assistant error", err);
-        return "Error: Could not connect to AI assistant.";
-      }
-    }
-
-    if (aiDescriptionBtn) {
-      aiDescriptionBtn.addEventListener("click", async () => {
-        const title = document.getElementById("title")?.value;
-        const game = gameSearchInput?.value;
-        if (!title || !game) {
-          alert("Please enter a title and select a game first.");
-          return;
-        }
-        aiDescriptionBtn.textContent = "Generating...";
-        aiDescriptionBtn.disabled = true;
-        const prompt = `Write a short, fun, and inviting description for a board game session titled "${title}" featuring the game "${game}". Keep it under 100 words.`;
-        const desc = await askAssistant(prompt);
-        const descEl = document.getElementById("description");
-        if (descEl) descEl.value = desc;
-        aiDescriptionBtn.textContent = "✨ Generate Description";
-        aiDescriptionBtn.disabled = false;
-      });
-    }
-
-
-    // AI Assistant chat widget
-
-    function addAssistantMessage(sender, text) {
-      if (!assistantMessages) return;
-      const msg = document.createElement("div");
-      msg.className = sender === "user" ? "msg-user" : "msg-bot";
-      msg.textContent = text;
-      assistantMessages.appendChild(msg);
-      assistantMessages.scrollTop = assistantMessages.scrollHeight;
-      return msg;
-    }
-
-    if (assistantBtn) {
-      assistantBtn.addEventListener("click", () => {
-        if (!assistantPopup) return;
-        assistantPopup.classList.toggle("hidden");
-        const isHidden = assistantPopup.classList.contains("hidden");
-        assistantBtn.setAttribute("aria-expanded", isHidden ? "false" : "true");
-        assistantPopup.setAttribute("aria-hidden", isHidden ? "true" : "false");
-      });
-    }
-    if (closeAssistant) {
-      closeAssistant.addEventListener("click", () => {
-        if (!assistantPopup) return;
-        assistantPopup.classList.add("hidden");
-        assistantBtn.setAttribute("aria-expanded", "false");
-        assistantPopup.setAttribute("aria-hidden", "true");
-      });
-    }
-
-    async function sendAssistantMessage() {
-      if (!assistantInput) return;
-      const text = assistantInput.value.trim();
-      if (!text) return;
-      addAssistantMessage("user", text);
-      assistantInput.value = "";
-      const thinkingNode = addAssistantMessage("bot", "Thinking...");
-      const reply = await askAssistant(text);
-      thinkingNode.textContent = reply;
-    }
-
-    if (assistantSend) assistantSend.addEventListener("click", sendAssistantMessage);
-    if (assistantInput) assistantInput.addEventListener("keypress", (e) => { if (e.key === "Enter") sendAssistantMessage(); });
-
 
     // Profile page: joined sessions view & leave
 
