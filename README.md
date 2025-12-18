@@ -1,157 +1,85 @@
-##GameMeet – PRO1001 Frontend Essentials
-----------------------------------------
+----------------------------------------------
+GameMeet – TFAG2001 Web Development Essentials
+----------------------------------------------
+
 Project Description
 -------------------
-GameMeet is a frontend web platform designed to help users find and organize live or remote game sessions for board games, card games, and role-playing games such as Dungeons & Dragons.
+GameMeet is a UX-focused web project designed to explore how people can find and organize board game, card game, and role-playing game sessions, either in person or online.
 
-The main goal of the project is to explore how a user-friendly interface can support people who want to connect with others around shared gaming interests, without relying on a backend or authentication system.
+The main goal of the project was to design a clear, approachable, and user-friendly experience for players who want to join or host game sessions without friction. The platform focuses on discoverability, clarity, and ease of use rather than complex social features.
 
-The project currently consists of three main pages:
+The project consists of three main pages:
 
---
-Home / Index
---
-- Displays available game sessions.
+- Home / Index – Allows users to browse available game sessions and filter them by location, game type, or date.
 
-- Includes search and filter functionality by location, game type, and date.
+- Create Session – Enables users to create their own game sessions by filling out a structured form.
 
-- Contains six hardcoded dummy sessions to simulate an active platform.
+- Profile – Simulates a user profile where players can manage personal information and view sessions they have joined or created.
 
-- Users can join sessions, which are then reflected on the Profile page.
+This project does not aim to be a fully functional product, but rather a working prototype that demonstrates user-centered design decisions, interaction patterns, and accessibility considerations.
 
-- Includes an AI-powered chatbot (using the OpenAI API) that assists users with questions and suggestions.
 
---
-Create Session
---
-- Allows users to create their own game sessions.
-
-- The Game Name field is designed to work with the BoardGameGeek XML API.
-
-- Since this API requires a paid key, a local database of 20 games (stored in script.js) is used to simulate this integration.
-
-- User-created sessions appear on the Home page and can be deleted.
-
---
-Profile
---
-- Simulates a user profile without a login or registration flow.
-
-- Users can add personal information they wish to share.
-
-- Displays sessions the user has created or joined.
-
-The project is intended as a functional prototype rather than a fully deployed product.
-
-----------------------
 Setup & Installation
-----------------------
-
-No complex setup is required to run this project locally.
-
-If you want to use the AI chatbot:
-
--You will need an OpenAI API key.
-
--Replace the placeholder API key inside script.js with your own key.
-
--Basic error handling is implemented so the UI does not break if the API fails.
-
--No backend, database, or build tools are required.
-
 --------------------
+No special setup is required to run this project.
+
+There is:
+
+- No backend
+
+- No database
+
+- No authentication system
+
+All data is handled locally to support rapid prototyping and UX testing.
+
 How to Run Locally
---------------------
+------------------
+Clone or download the repository
 
-Clone the repository:
+Open the project folder in your code editor
 
-- git clone https://github.com/your-username/GameMeet.git
+Open index.html directly in your browser
+(Alternatively, use a live server extension for easier testing)
 
+No build tools or dependencies are required.
 
-Navigate into the project folder:
-
-- cd GameMeet
-
-
-Open the project in your code editor:
-
-- code .
-
-
-(Replace code . with your editor’s command if needed.)
-
-Open index.html in your browser:
-
-- Double-click the file
-
-Or use a Live Server extension for easier development
-
--------------------
 Known Limitations
--------------------
+-----------------
+There is no real user authentication or persistence beyond local storage
 
-There is no backend or database; all data is stored locally using localStorage.
+Sessions and profiles are simulated rather than stored in a database
 
-There is no authentication or user account system.
+The project does not support real-time updates or multi-user interaction
 
-Dummy sessions on the Home page are hardcoded and cannot be deleted.
+Usability testing was limited in scope and conducted informally
 
-The BoardGameGeek API integration is simulated using a local dataset.
+These limitations were accepted intentionally to keep the scope manageable and focus on UX fundamentals rather than technical complexity.
 
-The AI chatbot depends on internet access and a valid OpenAI API key.
-
-This project is a prototype and not intended for production use.
-
----------------------
 Future Improvements
----------------------
-Given more time and resources, the following improvements could be explored:
+-------------------
+Given more time and resources, the project could be expanded with:
 
-- Implementing a real login and registration flow.
+A proper login and registration flow
 
-- Adding a backend and database for persistent user data and sessions.
+Real user profiles with persistent data
 
-- Fully integrating the BoardGameGeek API.
+Advanced filtering and search capabilities
 
-- Improving matchmaking features (recommendations based on preferences).
+Improved onboarding for first-time users
 
-- Expanding accessibility testing with real users.
+Expanded accessibility testing with assistive technologies
 
-- Enhancing AI features with clearer transparency and user controls.
+Mobile-first refinements based on user testing feedback
 
+Future iterations would also benefit from additional usability testing sessions and validation with a broader range of users.
+
+UX & Design Notes
 -----------------
-Technologies Used
------------------
-HTML5 and CSS3 for structure and styling
+The design process followed a user-centered approach, starting from identifying player needs and frustrations when organizing game sessions.
 
-JavaScript (ES6+) for interactivity and logic
+Layouts were designed to prioritize readability, simplicity, and clear call-to-action elements.
 
-OpenAI API for the AI-powered chatbot
+Accessibility was considered through semantic HTML, clear visual hierarchy, and keyboard navigability.
 
-Git & GitHub for version control
-
------------------------
-Notes on AI Integration
------------------------
-The chatbot uses the OpenAI API to provide user assistance.
-
-API calls include error handling and fallback messaging.
-
-AI output is treated as guidance, not authoritative information.
-
-Ethical considerations such as transparency and user trust were taken into account.
-
-AI Assistance Disclosure
-
-This project was developed with the assistance of AI tools (ChatGPT) for:
-
--Code suggestions and refactoring
-
--UI/UX ideas
-
--Debugging support
-
--Documentation drafting
-
-All generated code and content were reviewed, adapted, and integrated manually.
-Final implementation decisions, feature selection, and architectural choices were made by the author.
+The project evolved from low-fidelity wireframes to a high-fidelity interactive prototype, with iterative improvements based on feedback and self-evaluation.
